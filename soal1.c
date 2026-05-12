@@ -76,13 +76,15 @@ void inorder(node* root){ // https://www.geeksforgeeks.org/dsa/binary-tree-trave
     if(root == NULL) return;
 
     inorder(root->left);
-    printf("%d ", root->data);
+    printf("%d", root->data);
+    if(root->left != NULL || root->right != NULL) printf(" ");
     inorder(root->right);
 }
 
 void preorder(node* root){
     if(root == NULL) return;
-    printf("%d ", root->data);
+    printf("%d", root->data);
+    if(root->left != NULL || root->right != NULL) printf(" ");
     preorder(root->left);
     preorder(root->right);
 }
@@ -91,7 +93,8 @@ void postorder(node* root){
     if(root == NULL) return;
     postorder(root->left);
     postorder(root->right);
-    printf("%d ", root->data);
+    printf("%d", root->data);
+    if(root->left != NULL || root->right != NULL) printf(" ");
 }
 
 // void preorder(int Arr[]){
