@@ -83,7 +83,7 @@ void postorder(node* root, int i, int N, int Arr[]){
     Arr[i] = root->data;
 }
 
-node* inputs(int* size, node* root, int Arr[]){
+node* inputs(int* size, node* root, int* Arr){
     node* temp;
     int N;
     scanf("%d", &N);
