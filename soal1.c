@@ -53,7 +53,7 @@ void inorder(node* root, int i, int N){ // https://www.geeksforgeeks.org/dsa/bin
 
     inorder(root->left, i+1, N);
     printf("%d ", root->data);
-    if(i != N-1) printf(" ");
+    // if(i != N-1) printf(" ");
     inorder(root->right, i+1, N);
 }
 
@@ -70,7 +70,7 @@ void postorder(node* root, int i, int N){
     postorder(root->left, i+1, N);
     postorder(root->right, i+1, N);
     printf("%d ", root->data);
-    if(i != N-1) printf(" ");
+    // if(i != N-1) printf(" ");
 }
 
 int main(){
