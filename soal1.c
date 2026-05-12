@@ -48,62 +48,43 @@ node* add(node* root, node* process,int i, int data){
         if(i%2 != 0){
             newroot->left = temp;
         } else newroot->right = temp;
-        // printf("root:%d, prosesing:%d\n", root->data, temp->data);
-        // printf("add %d;%d anak dari %d\n", i, data, newroot->data);
         return newroot;
     } else if (temp->left != NULL && temp->right != NULL){
-        // printf("%d\n", temp->data);
         if(temp->left->left != NULL && temp->left->right != NULL){
             add(temp, temp->right, i, data);
         } else add(temp, temp->left, i, data);
         
     } else if (temp->left == NULL && root->right != NULL){
-        // printf("root:%d; sini:%d\n", root->data, temp->data);
         return add(temp, temp->left, i, data);
     } else if (temp->right == NULL){
         return add(temp, temp->right, i, data);
     } 
-    
-    // if(i % 2 != 0){ // ganjil = left
-    //     temp->left = initial(data);
-    // } else {
-    //     temp->right = initial(data);
-    // }
-    // return root;
 }
 
-void inorder(node* root){ // https://www.geeksforgeeks.org/dsa/binary-tree-traversal/
+void inorder(node* root, int i, int N){ // https://www.geeksforgeeks.org/dsa/binary-tree-traversal/
     if(root == NULL) return;
 
-    inorder(root->left);
-    printf("%d", root->data);
-    if(root->left != NULL || root->right != NULL) printf(" ");
-    inorder(root->right);
+    inorder(root->left, i+1, N);
+    printf("%d ", root->data);
+    if(i != N) printf(" ");
+    inorder(root->right, i+1, N);
 }
 
-void preorder(node* root){
+void preorder(node* root, int i, int N){
     if(root == NULL) return;
-    printf("%d", root->data);
-    if(root->left != NULL || root->right != NULL) printf(" ");
-    preorder(root->left);
-    preorder(root->right);
+    printf("%d ", root->data);
+    // if(root->left != NULL || root->right != NULL) printf(" ");
+    preorder(root->left, i+1, N);
+    preorder(root->right, i+1, N);
 }
 
-void postorder(node* root){
+void postorder(node* root, int i, int N){
     if(root == NULL) return;
-    postorder(root->left);
-    postorder(root->right);
-    printf("%d", root->data);
-    if(root->left != NULL || root->right != NULL) printf(" ");
+    postorder(root->left, i+1, N);
+    postorder(root->right, i+1, N);
+    printf("%d ", root->data);
+    // if(root->left != NULL || root->right != NULL) printf(" ");
 }
-
-// void preorder(int Arr[]){
-//     while(1){
-
-//     }
-
-//     return;
-// }
 
 int main(){
     node* root;
@@ -123,9 +104,9 @@ int main(){
         }
     }
 
-    printf("PRE ");preorder(root);printf("\n");
-    printf("IN ");inorder(root);printf("\n");
-    printf("POST ");postorder(root);printf("\n");
+    printf("PRE ");preorder(root,0,N);printf("\n");
+    printf("IN ");inorder(root,0,N);printf("\n");
+    printf("POST ");postorder(root,0,N);printf("\n");
 
     return 0;
 }
