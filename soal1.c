@@ -72,8 +72,8 @@ void inorder(node* root, int i, int N){ // https://www.geeksforgeeks.org/dsa/bin
 
 void preorder(node* root, int i, int N){
     if(root == NULL) return;
-    printf("%d ", root->data);
-    // if(root->left != NULL || root->right != NULL) printf(" ");
+    printf("%d", root->data);
+    if(i != N) printf(" ");
     preorder(root->left, i+1, N);
     preorder(root->right, i+1, N);
 }
@@ -82,8 +82,8 @@ void postorder(node* root, int i, int N){
     if(root == NULL) return;
     postorder(root->left, i+1, N);
     postorder(root->right, i+1, N);
-    printf("%d ", root->data);
-    // if(root->left != NULL || root->right != NULL) printf(" ");
+    printf("%d", root->data);
+    if(i != N) printf(" ");
 }
 
 int main(){
@@ -94,7 +94,6 @@ int main(){
     int Arr[N];
     for(int i = 0; i < N; i++){
         scanf("%d", &Arr[i]);
-        // printf("%d\n", Arr[i]);
         if(i == 0){
             root = initial(Arr[i]);
             temp = root;
