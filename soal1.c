@@ -25,19 +25,6 @@ node* initial(int data){
     return new;
 }
 
-// node* add(node* root, int i, int data){
-//     int tempDat = data;
-//     if(data < 0){
-//         tempDat *= -1;
-//     }
-
-//     if (root == NULL){
-//         return initial(data);
-//     } else if (root->data < tempDat){
-
-//     }
-// }
-
 node* add(node* root, node* process,int i, int data){
     node* temp = process;
     node* newroot = root;
@@ -66,14 +53,14 @@ void inorder(node* root, int i, int N){ // https://www.geeksforgeeks.org/dsa/bin
 
     inorder(root->left, i+1, N);
     printf("%d ", root->data);
-    if(i != N) printf(" ");
+    if(i != N-1) printf(" ");
     inorder(root->right, i+1, N);
 }
 
 void preorder(node* root, int i, int N){
     if(root == NULL) return;
     printf("%d", root->data);
-    if(i != N) printf(" ");
+    if(i != N-1) printf(" ");
     preorder(root->left, i+1, N);
     preorder(root->right, i+1, N);
 }
@@ -83,7 +70,7 @@ void postorder(node* root, int i, int N){
     postorder(root->left, i+1, N);
     postorder(root->right, i+1, N);
     printf("%d", root->data);
-    if(i != N) printf(" ");
+    if(i != N-1) printf(" ");
 }
 
 int main(){
@@ -102,6 +89,7 @@ int main(){
             temp = root;
         }
     }
+    
 
     printf("PRE ");preorder(root,0,N);printf("\n");
     printf("IN ");inorder(root,0,N);printf("\n");
