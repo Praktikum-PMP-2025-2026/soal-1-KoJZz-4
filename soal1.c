@@ -83,7 +83,7 @@ void postorder(node* root, int i, int N, int Arr[]){
     Arr[i] = root->data;
 }
 
-node* inputs(int* size, node* root, int Array[]){
+node* inputs(int* size, node* root){
     node* temp;
     int N;
     scanf("%d", &N);
@@ -91,7 +91,6 @@ node* inputs(int* size, node* root, int Array[]){
     int Arr[N];
     for(int i = 0; i < N; i++){
         scanf("%d", &Arr[i]);
-        Array[i] = Arr[i];
         if(i == 0){
             root = initial(Arr[i]);
             temp = root;
@@ -120,7 +119,7 @@ int main(){
     //     }
     // }
 
-    root = inputs(&N, root, Arr);
+    root = inputs(&N, root);
     
 
     printf("PRE ");preorder(root,0,N, Arr);
