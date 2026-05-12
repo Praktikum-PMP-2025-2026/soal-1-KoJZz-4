@@ -48,46 +48,36 @@ node* add(node* root, node* process,int i, int data){
     } 
 }
 
-void display(int Arr[], int N){
-    for(int i = 0; i < N; i++){
-        printf("%d", Arr[i]);
-        if(i != N-1) printf(" ");
-    }
-}
-
-void inorder(node* root, int i, int N, int Arr[]){ // https://www.geeksforgeeks.org/dsa/binary-tree-traversal/
+void inorder(node* root, int i, int N){ // https://www.geeksforgeeks.org/dsa/binary-tree-traversal/
     if(root == NULL) return;
 
-    inorder(root->left, i+1, N, Arr);
-    // printf("%d ", root->data);
+    inorder(root->left, i+1, N);
+    printf("%d ", root->data);
+    if(i != N-1) printf(" ");
+    inorder(root->right, i+1, N);
+}
+
+void preorder(node* root, int i, int N){
+    if(root == NULL) return;
+    printf("%d ", root->data);
     // if(i != N-1) printf(" ");
-    Arr[i] = root->data;
-    inorder(root->right, i+1, N, Arr);
+    preorder(root->left, i+1, N);
+    preorder(root->right, i+1, N);
 }
 
-void preorder(node* root, int i, int N, int Arr[]){
+void postorder(node* root, int i, int N){
     if(root == NULL) return;
-    // printf("%d", root->data);
-    Arr[i] = root->data;
-    // if(i != N-1) printf(" ");
-    preorder(root->left, i+1, N, Arr);
-    preorder(root->right, i+1, N, Arr);
+    postorder(root->left, i+1, N);
+    postorder(root->right, i+1, N);
+    printf("%d ", root->data);
+    if(i != N-1) printf(" ");
 }
 
-void postorder(node* root, int i, int N, int Arr[]){
-    if(root == NULL) return;
-    postorder(root->left, i+1, N, Arr);
-    postorder(root->right, i+1, N, Arr);
-    // printf("%d", root->data);
-    // if(i != N) printf(" ");
-    Arr[i] = root->data;
-}
-
-node* inputs(int* size, node* root){
+int main(){
+    node* root;
     node* temp;
     int N;
     scanf("%d", &N);
-    *size = N;
     int Arr[N];
     for(int i = 0; i < N; i++){
         scanf("%d", &Arr[i]);
@@ -99,36 +89,11 @@ node* inputs(int* size, node* root){
             temp = root;
         }
     }
-    return temp;
-}
-
-int main(){
-    node* root;
-    // node* temp;
-    int N;
-    // scanf("%d", &N);
-    int Arr[N];
-    // for(int i = 0; i < N; i++){
-    //     scanf("%d", &Arr[i]);
-    //     if(i == 0){
-    //         root = initial(Arr[i]);
-    //         temp = root;
-    //     } else {
-    //         temp = add(root, temp, i, Arr[i]);
-    //         temp = root;
-    //     }
-    // }
-
-    root = inputs(&N, root);
     
 
-    printf("PRE ");preorder(root,0,N, Arr);
-    display(Arr, N);
-    printf("\n");
-    printf("IN ");inorder(root,0,N, Arr);
-    display(Arr, N);
-    printf("\n");
-    printf("POST ");postorder(root,0,N, Arr);printf("\n");
+    printf("PRE ");preorder(root,0,N);printf("\n");
+    printf("IN ");inorder(root,0,N);printf("\n");
+    printf("POST ");postorder(root,0,N);printf("\n");
 
     return 0;
 }
